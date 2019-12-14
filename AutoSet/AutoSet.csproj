@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Extensions\Extensions.csproj" />
+    <ProjectReference Include="..\RefrectTool\RefrectionTool.csproj" />
+    <ProjectReference Include="..\TransExtension\TransExtension.csproj" />
   </ItemGroup>
 
   <ItemGroup>
