@@ -32,7 +32,7 @@ namespace OKZKX.UnityTool
         /// 为所有 AutoSet 特性的字段设置引用
         /// </summary>
         /// <param name="origin"></param>
-        public static void SetFileds(Component origin)
+        public static void SetFields(Component origin)
         {
             RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(origin, (fieldInfo, arr) =>
              {
@@ -40,6 +40,17 @@ namespace OKZKX.UnityTool
                  object value = GetComp(origin, arr.SetBy, fieldInfo.FieldType, name);
                  fieldInfo.SetValue(origin, value);
              });
+        }
+
+        public static void SetFields(object origin)
+        {
+            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(origin, (fieldInfo, arr) =>
+            {
+                string name = FormatName(arr.Name, fieldInfo.Name);
+                Transform temp = UnityEngine.Object.FindObjectOfType<Transform>();
+                object value = temp.GetComponentInScene(fieldInfo.FieldType, name);
+                fieldInfo.SetValue(origin, value);
+            });
         }
 
         private static object GetComp(Component origin, SetBy setBy, Type fieldType, string name)

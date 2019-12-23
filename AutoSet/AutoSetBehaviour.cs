@@ -10,9 +10,9 @@ namespace OKZKX.UnityTool
 {
     public abstract class AutoSetBehaviour : MonoBehaviour
     {
-        public virtual void Awake()
+        protected virtual void Awake()
         {
-            AutoSetTool.SetFileds(this);
+            AutoSetTool.SetFields(this);
         }
     }
 }
