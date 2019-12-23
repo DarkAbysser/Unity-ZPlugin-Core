@@ -73,15 +73,14 @@ public class Timer
     }
     static IEnumerator ToCoro(float start, float target, float time, Action<float> action)
     {
-        float toTimer = 0;
+        float timer = 0;
         float temp = start;
-        action(start);
-        while (toTimer < time)
+        while (timer < time)
         {
-            temp = Mathf.Lerp(start, target, toTimer / time);
+            temp = Mathf.Lerp(start, target, timer / time);
             action(temp);
             yield return null;
-            toTimer += UnityEngine.Time.deltaTime;
+            timer += UnityEngine.Time.deltaTime;
         }
         action(target);
     }

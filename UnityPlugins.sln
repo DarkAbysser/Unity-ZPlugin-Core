@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Camera", "Camera\Camera.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSystem", "EventSystem\EventSystem.csproj", "{02B16CB7-092C-4DCE-A477-467EB19AEA19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransExtension", "TransExtension\TransExtension.csproj", "{9E56D861-0334-4975-A02F-FFF6C9DACA56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransExtension", "TransExtension\TransExtension.csproj", "{9E56D861-0334-4975-A02F-FFF6C9DACA56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefrectionTool", "RefrectTool\RefrectionTool.csproj", "{6E11704F-D5E1-4413-810C-6D78E316024A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefrectionTool", "RefrectTool\RefrectionTool.csproj", "{6E11704F-D5E1-4413-810C-6D78E316024A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetHelper", "NetHelper\NetHelper.csproj", "{30B1A294-FBB4-46EE-B2A4-6BF3BF45A2BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{6E11704F-D5E1-4413-810C-6D78E316024A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E11704F-D5E1-4413-810C-6D78E316024A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E11704F-D5E1-4413-810C-6D78E316024A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30B1A294-FBB4-46EE-B2A4-6BF3BF45A2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30B1A294-FBB4-46EE-B2A4-6BF3BF45A2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30B1A294-FBB4-46EE-B2A4-6BF3BF45A2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30B1A294-FBB4-46EE-B2A4-6BF3BF45A2BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\Users\Administrator\Documents\GitHub\JungleWar_2020\JungleWar\Assets\Plugins\AutoSet\</OutputPath>
+    <OutputPath>C:\Users\Administrator\Documents\GitHub\UnityPluginsTest\Assets\Plugins\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

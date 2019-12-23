@@ -34,22 +34,22 @@ namespace OKZKX.UnityTool
         /// <param name="origin"></param>
         public static void SetFields(Component origin)
         {
-            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(origin, (fieldInfo, arr) =>
+            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(origin, (fieldInfo, attr) =>
              {
-                 string name = FormatName(arr.Name, fieldInfo.Name);
-                 object value = GetComp(origin, arr.SetBy, fieldInfo.FieldType, name);
+                 string name = FormatName(attr.Name, fieldInfo.Name);
+                 object value = GetComp(origin, attr.SetBy, fieldInfo.FieldType, name);
                  fieldInfo.SetValue(origin, value);
              });
         }
 
-        public static void SetFields(object origin)
+        public static void SetFields(object obj,Component origin)
         {
-            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(origin, (fieldInfo, arr) =>
+            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(obj, (fieldInfo, attr) =>
             {
-                string name = FormatName(arr.Name, fieldInfo.Name);
+                string name = FormatName(attr.Name, fieldInfo.Name);
                 Transform temp = UnityEngine.Object.FindObjectOfType<Transform>();
-                object value = temp.GetComponentInScene(fieldInfo.FieldType, name);
-                fieldInfo.SetValue(origin, value);
+                object value = GetComp(origin, attr.SetBy, fieldInfo.FieldType, name);
+                fieldInfo.SetValue(obj, value);
             });
         }
 
