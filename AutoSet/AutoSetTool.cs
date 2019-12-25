@@ -32,7 +32,7 @@ namespace OKZKX.UnityTool
         /// 为所有 AutoSet 特性的字段设置引用
         /// </summary>
         /// <param name="origin"></param>
-        public static void SetFields(Component origin)
+        public static void SetFields(this Component origin)
         {
             RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(origin, (fieldInfo, attr) =>
              {
@@ -42,13 +42,23 @@ namespace OKZKX.UnityTool
              });
         }
 
-        public static void SetFields(object obj,Component origin)
+        public static void SetFields(this object obj, Component origin)
+        {
+            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(obj, (fieldInfo, attr) =>
+            {
+                string name = FormatName(attr.Name, fieldInfo.Name);
+                object value = GetComp(origin, attr.SetBy, fieldInfo.FieldType, name);
+                fieldInfo.SetValue(obj, value);
+            });
+        }
+
+        public static void SetFields(this object obj)
         {
             RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(obj, (fieldInfo, attr) =>
             {
                 string name = FormatName(attr.Name, fieldInfo.Name);
                 Transform temp = UnityEngine.Object.FindObjectOfType<Transform>();
-                object value = GetComp(origin, attr.SetBy, fieldInfo.FieldType, name);
+                object value = GetComp(temp, attr.SetBy, fieldInfo.FieldType, name);
                 fieldInfo.SetValue(obj, value);
             });
         }
@@ -68,7 +78,7 @@ namespace OKZKX.UnityTool
             }
         }
 
-        private static string FormatName(string name, string fiName)
+        public static string FormatName(string name, string fiName)
         {
             if (name == null) return null;
             return FirstCharToUpper(name == "" ? fiName : name);

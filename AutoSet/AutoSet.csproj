@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\Users\Administrator\Documents\GitHub\UnityPluginsTest\Assets\Plugins\</OutputPath>
+    <OutputPath>C:\Users\Administrator\Documents\GitHub\MyUnityProjects\ArpgDemo\Assets\Plugins</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

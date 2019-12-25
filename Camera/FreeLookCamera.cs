@@ -35,26 +35,13 @@ public class FreeLookCamera : MonoBehaviour
     [SerializeField] float MinAngleX = -60;
 
     public bool Workable = true;
+    public bool LockCursor = true;
 
     Transform cameraTarget;//摄像机最终的位移坐标
     Transform cameraPivot;//摄像机面朝的点,并且这个点随着目标移动
-    public bool LockCursor {
-        set {
-            Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
-            Cursor.visible = !value;
-        }
-    }
     void Start()
     {
-        if (Target != null)
-        {
-            LockCursor = true;
-            cameraPivot = new GameObject("CameraPivot").transform;
-            cameraPivot.position = Target.position + _pivotOffset;
-
-            cameraTarget = new GameObject("CameraTarget").transform;
-            cameraTarget.SetParent(cameraPivot);
-        }
+        SetTarget(Target);
     }
 
     void Update()
@@ -64,6 +51,33 @@ public class FreeLookCamera : MonoBehaviour
             PivotAction();
             TargetAction();
         }
+        
+        Cursor.lockState = LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !LockCursor;
+    }
+
+    public void SetTarget(Transform target)
+    {
+        if (target == null)
+            return;
+
+        cameraPivot = new GameObject("CameraPivot").transform;
+        cameraPivot.position = Target.position + _pivotOffset;
+
+        cameraTarget = new GameObject("CameraTarget").transform;
+        cameraTarget.SetParent(cameraPivot);
+    }
+
+    public void RemoveTarget()
+    {
+        if (Target == null)
+            return;
+
+        Destroy(cameraPivot.gameObject);
+        cameraPivot = null;
+
+        Destroy(cameraTarget.gameObject);
+        cameraTarget = null;
     }
 
     private void TargetAction()
@@ -110,7 +124,6 @@ public class FreeLookCamera : MonoBehaviour
 
     private void RotateToTarget()
     {
-        //transform.rotation = cameraTarget.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, cameraTarget.rotation, 0.5f);
     }
 }

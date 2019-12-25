@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttackSystem", "UnityPlugins\AttackSystem.csproj", "{91CCBA49-B962-4934-8B0B-D09BAF6CF393}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions", "Extensions\Extensions.csproj", "{85F3D4AA-0BF0-45D2-A777-A9E25CB8771E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSet", "AutoSet\AutoSet.csproj", "{5AC5D85D-3F33-4D4A-9E64-AE010EAAC59E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timer", "Timer\Timer.csproj", "{F7919AB9-6DF0-4DA4-A0A1-209492905521}"
@@ -23,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransExtension", "TransExte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefrectionTool", "RefrectTool\RefrectionTool.csproj", "{6E11704F-D5E1-4413-810C-6D78E316024A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoad", "AutoLoad\AutoLoad.csproj", "{B180C4B8-ED19-473E-8F2D-0BF6D5A269D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +33,6 @@ Global
 		{91CCBA49-B962-4934-8B0B-D09BAF6CF393}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91CCBA49-B962-4934-8B0B-D09BAF6CF393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91CCBA49-B962-4934-8B0B-D09BAF6CF393}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85F3D4AA-0BF0-45D2-A777-A9E25CB8771E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85F3D4AA-0BF0-45D2-A777-A9E25CB8771E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85F3D4AA-0BF0-45D2-A777-A9E25CB8771E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85F3D4AA-0BF0-45D2-A777-A9E25CB8771E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AC5D85D-3F33-4D4A-9E64-AE010EAAC59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AC5D85D-3F33-4D4A-9E64-AE010EAAC59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AC5D85D-3F33-4D4A-9E64-AE010EAAC59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{6E11704F-D5E1-4413-810C-6D78E316024A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E11704F-D5E1-4413-810C-6D78E316024A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E11704F-D5E1-4413-810C-6D78E316024A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B180C4B8-ED19-473E-8F2D-0BF6D5A269D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B180C4B8-ED19-473E-8F2D-0BF6D5A269D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B180C4B8-ED19-473E-8F2D-0BF6D5A269D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B180C4B8-ED19-473E-8F2D-0BF6D5A269D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

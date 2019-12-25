@@ -8,11 +8,12 @@ using UnityEngine;
 
 namespace OKZKX.UnityTool
 {
-    public abstract class AutoSetBehaviour : MonoBehaviour
+    public abstract class AutoSetLoadBehaviour : AutoSetBehaviour
     {
-        protected virtual void Awake()
+        protected override void Awake()
         {
             this.SetFields();
+            this.LoadFields();
         }
     }
 }

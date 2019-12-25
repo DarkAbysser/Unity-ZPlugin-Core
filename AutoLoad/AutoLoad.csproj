@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,6 +7,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>C:\Users\Administrator\Documents\GitHub\MyUnityProjects\ArpgDemo\Assets\Plugins</OutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoSet\AutoSet.csproj" />
+    <ProjectReference Include="..\RefrectTool\RefrectionTool.csproj" />
+    <ProjectReference Include="..\TransExtension\TransExtension.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="UnityEngine">
