@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace OKZKX.UnityTool
-{
-    public enum SetBy
-    {
+namespace ZPlugin {
+    public enum SetBy {
         Children,
         Parent,
         SceneObject,
@@ -13,13 +11,11 @@ namespace OKZKX.UnityTool
     /// AutoSet 特性, 自动设置字段引用
     /// </summary>
     [AttributeUsage(AttributeTargets.Field)]
-    public class AutoSetAttribute : Attribute
-    {
+    public class AutoSetAttribute : Attribute {
         public string Name;
         public SetBy SetBy;
 
-        public AutoSetAttribute(string Name = null, SetBy SetBy = SetBy.Children)
-        {
+        public AutoSetAttribute(string Name = null, SetBy SetBy = SetBy.Children) {
             this.Name = Name;
             this.SetBy = SetBy;
         }

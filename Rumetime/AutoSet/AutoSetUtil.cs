@@ -1,7 +1,4 @@
 ﻿/**********************************************************************
-* Author: 曾楷翔
-* Create Date: 2018-12-07
-* Description: 自动设置引用
 * 将 AutoSet 特性放在字段上 调用 this.SetFileds(推荐在 Awake方法内)为其设置引用
 * 将会自动查找对应字段的类
 * 
@@ -14,48 +11,37 @@
 * SetFileds 可以配置进行查找的 Transform 对象 ,默认就为本对象
 ***********************************************************************/
 
-using OKZKX.UnityExtension;
 using System;
 using UnityEngine;
 
 
-namespace OKZKX.UnityTool
-{
-
-
+namespace ZPlugin {
     /// <summary>
     /// AutoSet 特性辅助类
     /// </summary>
-    public static class AutoSetTool
-    {
+    public static class AutoSetUtil {
         /// <summary>
         /// 为所有 AutoSet 特性的字段设置引用
         /// </summary>
         /// <param name="origin"></param>
-        public static void SetFields(this Component origin)
-        {
-            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(origin, (fieldInfo, attr) =>
-             {
-                 string name = FormatName(attr.Name, fieldInfo.Name);
-                 object value = GetComp(origin, attr.SetBy, fieldInfo.FieldType, name);
-                 fieldInfo.SetValue(origin, value);
-             });
+        public static void SetFields(this Component origin) {
+            ReflectionUtil.EachFieldWithAttr<AutoSetAttribute>(origin, (fieldInfo, attr) => {
+                string name = FormatName(attr.Name, fieldInfo.Name);
+                object value = GetComp(origin, attr.SetBy, fieldInfo.FieldType, name);
+                fieldInfo.SetValue(origin, value);
+            });
         }
 
-        public static void SetFields(this object obj, Component origin)
-        {
-            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(obj, (fieldInfo, attr) =>
-            {
+        public static void SetFields(this object obj, Component origin) {
+            ReflectionUtil.EachFieldWithAttr<AutoSetAttribute>(obj, (fieldInfo, attr) => {
                 string name = FormatName(attr.Name, fieldInfo.Name);
                 object value = GetComp(origin, attr.SetBy, fieldInfo.FieldType, name);
                 fieldInfo.SetValue(obj, value);
             });
         }
 
-        public static void SetFields(this object obj)
-        {
-            RefrectionTool.EachFieldWithAttr<AutoSetAttribute>(obj, (fieldInfo, attr) =>
-            {
+        public static void SetFields(this object obj) {
+            ReflectionUtil.EachFieldWithAttr<AutoSetAttribute>(obj, (fieldInfo, attr) => {
                 string name = FormatName(attr.Name, fieldInfo.Name);
                 Transform temp = UnityEngine.Object.FindObjectOfType<Transform>();
                 object value = GetComp(temp, attr.SetBy, fieldInfo.FieldType, name);
@@ -63,10 +49,8 @@ namespace OKZKX.UnityTool
             });
         }
 
-        private static object GetComp(Component origin, SetBy setBy, Type fieldType, string name)
-        {
-            switch (setBy)
-            {
+        private static object GetComp(Component origin, SetBy setBy, Type fieldType, string name) {
+            switch (setBy) {
                 case SetBy.Children:
                     return origin.transform.GetComponentInChildren(fieldType, name);
                 case SetBy.Parent:
@@ -78,14 +62,12 @@ namespace OKZKX.UnityTool
             }
         }
 
-        public static string FormatName(string name, string fiName)
-        {
+        public static string FormatName(string name, string fiName) {
             if (name == null) return null;
             return FirstCharToUpper(name == "" ? fiName : name);
         }
 
-        private static string FirstCharToUpper(string name)
-        {
+        private static string FirstCharToUpper(string name) {
             if (string.IsNullOrEmpty(name)) return name;
             return name[0].ToString().ToUpper() + name.Substring(1);
         }

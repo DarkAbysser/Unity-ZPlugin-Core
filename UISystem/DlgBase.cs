@@ -4,7 +4,7 @@
 * 在这个UI管理系统下
 * 所有的UI面板都要挂载这个类
 ***********************************************************************/
-using OKZKX.UnityTool;
+using ZPlugin;
 using UnityEngine;
 
 public abstract class DlgBase : AutoSetBehaviour

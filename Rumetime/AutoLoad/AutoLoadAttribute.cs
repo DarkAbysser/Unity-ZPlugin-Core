@@ -1,10 +1,7 @@
 ﻿using System;
-using UnityEngine;
 
-namespace OKZKX.UnityTool
-{
-    public enum LoadFrom
-    {
+namespace ZPlugin {
+    public enum LoadFrom {
         Resources
     }
 
@@ -12,14 +9,12 @@ namespace OKZKX.UnityTool
     /// AutoSet 特性, 自动设置字段引用
     /// </summary>
     [AttributeUsage(AttributeTargets.Field)]
-    public class AutoLoadAttribute : Attribute
-    {
+    public class AutoLoadAttribute : Attribute {
         public string Name;
         public LoadFrom LoadFrom;
         public string Path;
 
-        public AutoLoadAttribute(string Path = "", string Name = "", LoadFrom LoadFrom = LoadFrom.Resources)
-        {
+        public AutoLoadAttribute(string Path = "", string Name = "", LoadFrom LoadFrom = LoadFrom.Resources) {
             this.Name = Name;
             this.Path = Path;
             this.LoadFrom = LoadFrom;
