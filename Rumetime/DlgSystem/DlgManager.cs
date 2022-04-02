@@ -13,17 +13,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-public class DlgManager
-{
+public class DlgManager {
     public string ResourcePath = "Dlg/";
 
     Transform canvasTrans;
     Dictionary<Type, DlgBase> dlgDict;
 
-    public DlgManager(Canvas canvas = null)
-    {
-        canvas = canvas ?? GameObject.FindObjectOfType<Canvas>();
+    public DlgManager(Canvas canvas = null) {
+        canvas = canvas ?? Object.FindObjectOfType<Canvas>();
         Debug.Assert(canvas == null, "canvas == null");
         this.canvasTrans = canvas.transform;
         dlgDict = new Dictionary<Type, DlgBase>();
@@ -36,22 +35,20 @@ public class DlgManager
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public T Show<T>(Transform parent = null) where T : DlgBase
-    {
+    public T Show<T>(Transform parent = null) where T : DlgBase {
         parent = parent ?? canvasTrans;
         T dlg = Resources.Load<T>(ResourcePath + typeof(T).Name);
         dlg.OnCreate();
-        return GameObject.Instantiate(dlg, parent);
+        return Object.Instantiate(dlg, parent);
     }
 
     /// <summary>
-    /// 隐藏(销毁)Dlg
+    /// 隐藏(销毁) Dlg
     /// </summary>
     /// <param name="dlg"></param>
-    public void Hide(DlgBase dlg)
-    {
+    public void Hide(DlgBase dlg) {
         dlg.OnDestroy();
-        GameObject.Destroy(dlg.gameObject);
+        Object.Destroy(dlg.gameObject);
     }
 
     #endregion
@@ -59,19 +56,15 @@ public class DlgManager
     #region 单实例Dlg
 
     /// <summary>
-    /// 切换Dlg
+    /// 切换 Dlg
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public bool Switch<T>() where T : DlgBase
-    {
-        if (dlgDict.TryGetValue(typeof(T), out var dlg))
-        {
+    public bool Switch<T>() where T : DlgBase {
+        if (dlgDict.TryGetValue(typeof(T), out var dlg)) {
             Hide(dlg);
             return false;
-        }
-        else
-        {
+        } else {
             T t = Show<T>();
             dlgDict.Add(typeof(T), t);
             return true;
@@ -79,43 +72,34 @@ public class DlgManager
     }
 
     /// <summary>
-    /// 切换Dlg
+    /// 切换 Dlg
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="t"></param>
     /// <returns></returns>
-    public bool Switch<T>(out T t) where T : DlgBase
-    {
-        if (dlgDict.TryGetValue(typeof(T), out var dlg))
-        {
+    public bool Switch<T>(out T t) where T : DlgBase {
+        if (dlgDict.TryGetValue(typeof(T), out var dlg)) {
             Hide(dlg);
             t = null;
             return false;
-        }
-        else
-        {
+        } else {
             t = Show<T>();
             dlgDict.Add(typeof(T), t);
             return true;
         }
-
     }
 
     /// <summary>
-    /// 获取Dlg
+    /// 获取 Dlg
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="t"></param>
     /// <returns></returns>
-    public bool TryGet<T>(out T t) where T : DlgBase
-    {
-        if (dlgDict.TryGetValue(typeof(T), out var dlg))
-        {
+    public bool TryGet<T>(out T t) where T : DlgBase {
+        if (dlgDict.TryGetValue(typeof(T), out var dlg)) {
             t = dlg as T;
             return true;
-        }
-        else
-        {
+        } else {
             t = null;
             return false;
         }
