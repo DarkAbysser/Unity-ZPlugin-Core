@@ -34,10 +34,10 @@ namespace ZPlugin {
             // TODO: more cheet style state
             switch (GUIType) {
                 case GUIType.Monitor:
-                    GUI.Box(new Rect(10, 10, 100, 100), strToShow);
+                    GUI.Box(new Rect(10, 10, 100, 50), strToShow);
                     break;
                 case GUIType.Tip:
-                    GUI.Box(new Rect(10, 10, 600, 50), strToShow);
+                    GUI.Box(new Rect(10, 10, 100, 50), strToShow);
                     Stop(0.5f);
                     break;
             }
