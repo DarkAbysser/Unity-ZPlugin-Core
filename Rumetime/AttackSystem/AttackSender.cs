@@ -13,15 +13,15 @@
 * 4.触发 AttackReceiver 相应方法
 * 5.AttackMessage 消息装箱并且传递
 ***********************************************************************/
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class AttackSender : MonoBehaviour
-{
-    [SerializeField] LayerMask receiverLayer;//接收者层级
-    [SerializeField] object attackMessage;//消息装箱
+public class AttackSender : MonoBehaviour {
+    [SerializeField] LayerMask receiverLayer; //接收者层级
+    [SerializeField] object attackMessage; //消息装箱
 
     bool attacking = false;
     List<AttackReceiver> AttackReceivers = new List<AttackReceiver>();
@@ -34,35 +34,39 @@ public class AttackSender : MonoBehaviour
     /// <param name="receiverLayer"></param>
     /// <param name="attackMessage"></param>
     /// <param name="attackSender"></param>
-    public void Init(LayerMask receiverLayer, object attackMessage, IAttackSenderController attackSender)
-    {
+    public void Init(LayerMask receiverLayer, object attackMessage, IAttackSenderController attackSender) {
         this.receiverLayer = receiverLayer;
         this.attackMessage = attackMessage;
         attackSender.OnAttackBeginEvent += BeginAttack;
         attackSender.OnAttackEndEvent += EndAttack;
     }
 
-    private void BeginAttack()=> attacking = true;
-    private void EndAttack()
-    {
+    private void BeginAttack() => attacking = true;
+
+    private void EndAttack() {
         attacking = false;
         AttackReceivers.Clear();
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (attacking)
-        {
-            if (1 << other.gameObject.layer == receiverLayer)
-            {
-                AttackReceiver attackReceiver = other.GetComponent<AttackReceiver>();
-                if (!AttackReceivers.Contains(attackReceiver))
-                {
-                    OnAttackedReceiver?.Invoke(attackReceiver);
-                    attackReceiver.ReceiveAttack(attackMessage, this);
-                    AttackReceivers.Add(attackReceiver);
-                }
-            }
+    private void OnTriggerStay(Collider other) {
+        if (!attacking) {
+            return;
         }
+
+        if ((other.gameObject.layer & receiverLayer) == 0) {
+            return;
+        }
+
+        if (!other.TryGetComponent<AttackReceiver>(out var attackReceiver)) {
+            return;
+        }
+
+        if (AttackReceivers.Contains(attackReceiver)) {
+            return;
+        }
+
+        OnAttackedReceiver?.Invoke(attackReceiver);
+        attackReceiver.ReceiveAttack(attackMessage, this);
+        AttackReceivers.Add(attackReceiver);
     }
 }
